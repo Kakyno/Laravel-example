@@ -1,11 +1,15 @@
 import { createApp } from "vue";
+import { defineAsyncComponent } from "vue";
 
-import UsersList from "./components/UsersList.vue";
-import UsersListItem from "./components/UsersListItem.vue";
-
-const app = createApp({});
-
-app.component("users-list", UsersList);
-app.component("users-list-item", UsersListItem);
+const app = createApp({
+    components: {
+        UsersList: defineAsyncComponent(() =>
+            import("./components/UsersList.vue")
+        ),
+        UsersListItem: defineAsyncComponent(() =>
+            import("./components/UsersListItem.vue")
+        ),
+    },
+});
 
 app.mount("#app");
